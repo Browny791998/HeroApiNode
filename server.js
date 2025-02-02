@@ -8,7 +8,12 @@ const app = express();
 const PORT = 5000;
 
 // Enable CORS for all routes
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: "*", // Allows all origins (for development)
+  methods: "GET, POST, PUT, DELETE, OPTIONS",
+  allowedHeaders: "Content-Type, Authorization"
+}));
 const publicKey = process.env.PUBLIC_KEY;
 app.get("/api/search/:heroName", async (req, res) => {
   try {
